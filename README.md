@@ -1,2 +1,1 @@
-# zyra
-dev blog webpage
+sample readme cox of conflict
