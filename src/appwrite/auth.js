@@ -28,20 +28,48 @@ export class AuthService{
             
             if(userAccount){
                 // call login here so that new acc directly get login 
+              return   this.login(email,password)
             }else{
                 return userAccount;
             }
-
-
         } catch (error) {
             throw  error
         }
 
     }
-
-    async login({email,password}){
+    
+    async getCurrentUser(){
+        try {
+            return await this.account.get()
+            
+        } catch (error) {
+             console.log("appwrite service :: getCurrentUser :: error",error);
+        }
 
     }
+
+    async login({email,password}){
+        try {
+
+        return await this.account.createEmailPasswordSession(email,password)
+            
+        } catch (error) {
+           console.log("appwrite service :: login :: error",error);
+        }
+
+    }
+
+    async logout (){
+        try {
+            return userAccount.deleteSessions();
+            
+        } catch (error) {
+            console.log("appwrite service :: logout :: error",error);
+            
+        }
+    }
+
+    
 };
 
 
